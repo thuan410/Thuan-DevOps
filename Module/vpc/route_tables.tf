@@ -14,8 +14,7 @@ resource "aws_route_table" "rt_public" {
 
 # Associate Public route tables to Public subnet
 resource "aws_route_table_association" "public_subnet_asso" {
-  count = length(var.public_subnet_cidrs)
-  subnet_id = element(aws_subnet.public_subnets[*].id, count.index)
+  subnet_id = aws_subnet.public_subnets.id
   route_table_id = aws_route_table.rt_public.id
 }
 
@@ -33,8 +32,3 @@ tags = {
 }
 }
 
-# Associate Public route tables to Private subnet
-resource "aws_route_table_association" "private_subnet_asso" {
-  subnet_id = aws_route_table.rt_private
-  route_table_id = aws_route_table.rt_private.id
-}

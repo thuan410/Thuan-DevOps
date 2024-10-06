@@ -1,6 +1,6 @@
 # Create VPC
 resource "aws_vpc" "Thuan_VPC" {
-  cidr_block = "10.0.0.0/16"
+  cidr_block = var.vpc_cidr
 
   tags = {
     Name = "Thuan_VPC"
@@ -43,27 +43,27 @@ resource "aws_internet_gateway" "i_gw" {
 
 
 
-# Create Security Groups (default)
-resource "aws_default_security_group" "default" {
-  vpc_id = aws_vpc.Thuan_VPC.id
+# Create a security group
+resource "aws_security_group" "sg_ec2" {
+  name        = "sg_ec2"
+  description = "Security group for EC2"
 
-  ingress  {
-    protocol = -1
-    self = true
-    from_port = 0 
-    to_port = 0
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
-
-  egress  {
-    from_port = 0
-    to_port = 0
-    protocol = -1
-
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
-   
+
   tags = {
-    Name = "Security Groups"
+    Name = "Security_Groups"
   }
 }
 
