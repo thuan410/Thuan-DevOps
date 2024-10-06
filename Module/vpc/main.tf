@@ -32,7 +32,7 @@ resource "aws_subnet" "private_subnets" {
 }
 
 # Create Internet Gateway
-resource "aws_internet_gateway" "gw" {
+resource "aws_internet_gateway" "i_gw" {
   vpc_id = aws_vpc.Thuan_VPC.id
 
   tags = {
@@ -47,7 +47,7 @@ resource "aws_route_table" "rt_public" {
   
   route    {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.gw.id
+    gateway_id = aws_internet_gateway.i_gw.id
   } 
 
 
@@ -61,4 +61,31 @@ resource "aws_route_table_association" "public_subnet_asso" {
   subnet_id = element(aws_subnet.public_subnets[*].id, count.index)
   route_table_id = aws_route_table.rt_public.id
 }
+
+
+# Create Security Groups (default)
+resource "aws_default_security_group" "default" {
+  vpc_id = aws_vpc.Thuan_VPC.id
+
+  ingress  {
+    protocol = -1
+    self = true
+    from_port = 0 
+    to_port = 0
+  }
+
+
+  egress  {
+    from_port = 0
+    to_port = 0
+    protocol = -1
+
+  }
+   
+  tags = {
+    Name = "Security Groups"
+  }
+}
+
+
 
