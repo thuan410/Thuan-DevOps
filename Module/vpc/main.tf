@@ -30,3 +30,12 @@ resource "aws_subnet" "private_subnets" {
     Name = "Private Subnet ${count.index + 1}"
   }
 }
+
+# Create Internet Gateway
+resource "aws_internet_gateway" "gw" {
+  vpc_id = aws_vpc.Thuan_VPC.id
+
+  tags = {
+    Name = "Thuan_IGW"
+  }
+}
