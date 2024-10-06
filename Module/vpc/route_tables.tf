@@ -20,6 +20,21 @@ resource "aws_route_table_association" "public_subnet_asso" {
 }
 
 
+# Create Route Tables Private
+resource "aws_route_table" "rt_private" {
+  vpc_id = aws_vpc.Thuan_VPC.id
 
+  route  {
+    cidr_block = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.nat_gw.id  
+  }
+tags = {
+  Name = "RT_Private"
+}
+}
 
-
+# Associate Public route tables to Private subnet
+resource "aws_route_table_association" "private_subnet_asso" {
+  subnet_id = aws_route_table.rt_private
+  route_table_id = aws_route_table.rt_private.id
+}
