@@ -19,6 +19,7 @@ resource "aws_instance" "public_instance" {
   instance_type          = "t2.micro"
   key_name               = aws_key_pair.key_pair.key_name
   vpc_security_group_ids = [aws_security_group.sg_ec2.id]
+  subnet_id = aws_subnet.public_subnets.id
 
   tags = {
     Name = "public_instance"

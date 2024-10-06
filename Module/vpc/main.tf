@@ -9,9 +9,9 @@ resource "aws_vpc" "Thuan_VPC" {
 
 # Create Subnet Public
 resource "aws_subnet" "public_subnets" {
- 
-  vpc_id = aws_vpc.Thuan_VPC.id
-  cidr_block = var.public_subnet_cidrs
+
+  vpc_id            = aws_vpc.Thuan_VPC.id
+  cidr_block        = var.public_subnet_cidrs
   availability_zone = var.azs
 
   tags = {
@@ -21,8 +21,8 @@ resource "aws_subnet" "public_subnets" {
 
 # Create Subnet Private
 resource "aws_subnet" "private_subnets" {
-  vpc_id = aws_vpc.Thuan_VPC.id
-  cidr_block = var.private_subnet_cidrs
+  vpc_id            = aws_vpc.Thuan_VPC.id
+  cidr_block        = var.private_subnet_cidrs
   availability_zone = var.azs
 
   tags = {
@@ -47,6 +47,7 @@ resource "aws_internet_gateway" "i_gw" {
 resource "aws_security_group" "sg_ec2" {
   name        = "sg_ec2"
   description = "Security group for EC2"
+  vpc_id = aws_vpc.Thuan_VPC.id
 
   ingress {
     from_port   = 22

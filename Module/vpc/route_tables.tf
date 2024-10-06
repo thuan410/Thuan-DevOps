@@ -2,10 +2,10 @@
 resource "aws_route_table" "rt_public" {
   vpc_id = aws_vpc.Thuan_VPC.id
 
-  route   {
+  route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.i_gw.id
-  } 
+  }
 
   tags = {
     Name = "RT_Public"
@@ -14,7 +14,7 @@ resource "aws_route_table" "rt_public" {
 
 # Associate Public route tables to Public subnet
 resource "aws_route_table_association" "public_subnet_asso" {
-  subnet_id = aws_subnet.public_subnets.id
+  subnet_id      = aws_subnet.public_subnets.id
   route_table_id = aws_route_table.rt_public.id
 }
 
@@ -23,12 +23,17 @@ resource "aws_route_table_association" "public_subnet_asso" {
 resource "aws_route_table" "rt_private" {
   vpc_id = aws_vpc.Thuan_VPC.id
 
-  route  {
-    cidr_block = "0.0.0.0/0"
-    nat_gateway_id = aws_nat_gateway.nat_gw.id  
+  route {
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.nat_gw.id
   }
-tags = {
-  Name = "RT_Private"
-}
+  tags = {
+    Name = "RT_Private"
+  }
 }
 
+# Associate Private route tables to Private subnet
+resource "aws_route_table_association" "private_subnet_asso" {
+  subnet_id = aws_subnet.private_subnets.id
+  route_table_id = aws_route_table.rt_private.id
+}
