@@ -14,25 +14,12 @@ resource "local_file" "private_key" {
   filename = "C:/Users/Thuan/Downloads/${var.key_name}.pem"
 }
 
-# Create EC2 number 1 
-resource "aws_instance" "test" {
-  ami = "ami-0866a3c8686eaeeba"
-  instance_type = "t2.micro"
- 
-
-  tags = {
-    Name = "test"
-  }
-}
-
-# Create EC2 number 2 (use IP Address Public)
-
 resource "aws_instance" "public_instance" {
   ami                    = "ami-0866a3c8686eaeeba"
   instance_type          = "t2.micro"
   key_name               = aws_key_pair.key_pair.key_name
-  vpc_security_group_ids = [aws_security_group.sg_ec2.id]
-  subnet_id = aws_subnet.public_subnets.id
+  vpc_security_group_ids = [var.Security_Groups]
+  subnet_id = var.public_subnet_cidr
 
   tags = {
     Name = "public_ec2"
@@ -44,20 +31,32 @@ resource "aws_instance" "public_instance" {
   }
 }
 
-
-# Create EC2 number 3 (use IP Address Private)
-resource "aws_instance" "private_instance" {
+resource "aws_instance" "private_ec2" {
   ami                    = "ami-0866a3c8686eaeeba"
   instance_type          = "t2.micro"
   key_name               = aws_key_pair.key_pair.key_name
-  vpc_security_group_ids = [aws_security_group.sg_ec2.id]
-  subnet_id              = aws_subnet.private_subnets.id
+  vpc_security_group_ids = [var.Security_Groups]
+  subnet_id = var.private_subnet_cidr
+
 
   tags = {
     Name = "private_ec2"
   }
+  
   root_block_device {
     volume_size = 30
     volume_type = "gp2"
   }
+}
+
+resource "aws_instance" "test" {
+  ami                    = "ami-0866a3c8686eaeeba"
+  instance_type          = "t2.micro"
+  subnet_id = var.public_subnet_cidr
+  
+
+   tags = {
+    Name = "test"
+  }
+  
 }

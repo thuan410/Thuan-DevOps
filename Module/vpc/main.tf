@@ -47,7 +47,7 @@ resource "aws_internet_gateway" "i_gw" {
 resource "aws_security_group" "sg_ec2" {
   name        = "sg_ec2"
   description = "Security group for EC2"
-  vpc_id = aws_vpc.Thuan_VPC.id
+  vpc_id      = aws_vpc.Thuan_VPC.id
 
   ingress {
     from_port   = 22
