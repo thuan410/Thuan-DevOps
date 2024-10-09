@@ -1,3 +1,5 @@
+
+
 variable "vpc_cidr_block" {
-  default = "vpc-0137e5c7664d1fab5"
+  default = "vpc-06b9b8184ca36a630"
 }

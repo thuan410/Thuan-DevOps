@@ -3,13 +3,13 @@ variable "key_name" {
 }
 
 variable "Security_Groups" {
-  default = "sg-09c32e062c0e4bdf3"
+  default = "sg-08cf8b18104640d33"
 }
 
 variable "public_subnet_cidr" {
-  default = "subnet-0dbb4fe3e9bc79fbf"
+  default = "subnet-096a1f980799df5ad"
 }
 
 variable "private_subnet_cidr" {
-  default = "subnet-0387b9aebfca4b16d"
+  default = "subnet-033bba84038ff4fef"
 }

@@ -1,3 +1,4 @@
+
 # Create Subnet Public
 variable "public_subnet_cidr" {
   type = string
@@ -19,5 +20,5 @@ variable "azs" {
 
 variable "vpc_cidr_block" {
   description = "Connect VPC "
-  default = "vpc-0137e5c7664d1fab5"
-}
+  default = "vpc-06b9b8184ca36a630"
+} 

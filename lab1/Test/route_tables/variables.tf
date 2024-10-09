@@ -4,21 +4,21 @@ variable "destination_cidr_block" {
 }
 
 variable "internet_gateway" {
-  default = "igw-0c5de8d68f6e04c0b"
+  default = "igw-02c45243167d46c6d"
 }
 
 variable "vpc_cidr_block" {
-  default = "vpc-0137e5c7664d1fab5"
+  default = "vpc-06b9b8184ca36a630"
 }
 
 variable "nat_gateway" {
-  default = "nat-0628041898ecb7e0d"
+  default = "nat-087bcb67b748ea483"
 }
 
 variable "public_subnet_cidr" {
-  default = "subnet-0dbb4fe3e9bc79fbf"
+  default = "subnet-096a1f980799df5ad"
 }
 
 variable "private_subnet_cidr" {
-  default = "subnet-0387b9aebfca4b16d"
+  default = "subnet-033bba84038ff4fef"
 }

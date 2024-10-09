@@ -1,12 +1,15 @@
+
+
+
 variable "create_nat_gateway" {
   type        = bool
   description = "whether to create a NAT gateway or not"
 }
 
 variable "public_subnet_cidr" {
-  default = "subnet-0dbb4fe3e9bc79fbf"
+  default = "subnet-096a1f980799df5ad"
 }
 
 variable "internet_gateway" {
-  default = "igw-0c5de8d68f6e04c0b"
+  default = "igw-02c45243167d46c6d"
 }
