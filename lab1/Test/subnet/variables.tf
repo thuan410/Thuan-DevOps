@@ -20,5 +20,6 @@ variable "azs" {
 
 variable "vpc_cidr_block" {
   description = "Connect VPC "
+  # Tùy thuộc vào giá trị của VPC mà mình mới tạo ra
   default = "vpc-06b9b8184ca36a630"
 } 

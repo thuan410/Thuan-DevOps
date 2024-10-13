@@ -1,9 +1,14 @@
+# Nhập tên của khóa
 variable "key_name" {
   description = "Name of the SSH key pair"
 }
 
 variable "Security_Groups" {
   default = "sg-08cf8b18104640d33"
+}
+
+variable "Security_Public" {
+  default = ""
 }
 
 variable "public_subnet_cidr" {

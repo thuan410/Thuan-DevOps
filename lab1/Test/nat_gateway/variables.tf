@@ -1,6 +1,4 @@
-
-
-
+# có cần tạo NAT hay là không
 variable "create_nat_gateway" {
   type        = bool
   description = "whether to create a NAT gateway or not"
