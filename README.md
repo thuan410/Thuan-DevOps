@@ -4,6 +4,7 @@ Use terraform to create : VPC, Route Tables, EC2, NAT Gateway, Security Groups
 # Project
 DEVOPS
 DEV(Development)
+
 Terraform
 Sử dụng terraform để triển khai một cách tự động trên AWS, không cần làm thủ công nữa.
 Triển khai:
